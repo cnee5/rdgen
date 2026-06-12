@@ -403,6 +403,26 @@ jobs:
           sed -i -e 's|updateUrl.isNotEmpty|false|' ./flutter/lib/desktop/pages/desktop_home_page.dart
           sed -i '/let (request, url) =/,/Ok(())/{/Ok(())/!d}' ./src/common.rs
 
+      - name: Custom Interface
+        continue-on-error: false
+        shell: bash
+        run: | 
+          #./flutter/lib/models/peer_tab_model.dart
+          sed -i -e 's|Address book|//&|' ./flutter/lib/models/peer_tab_model.dart
+          sed -i -e 's|Accessible devices|//&|' ./flutter/lib/models/peer_tab_model.dart
+          sed -i -e 's|IconFont.addressBook|//&|' ./flutter/lib/models/peer_tab_model.dart
+          sed -i -e 's|IconFont.deviceGroupFill|//&|' ./flutter/lib/models/peer_tab_model.dart
+          sed -i -e 's|!(bind.isDisableAb|//&|' ./flutter/lib/models/peer_tab_model.dart
+          sed -i -e 's|!(bind.isDisableGroupPanel() |//&|' ./flutter/lib/models/peer_tab_model.dart
+          sed -i -e 's|maxTabCount = 5|maxTabCount = 3|' ./flutter/lib/models/peer_tab_model.dart
+          #./flutter/lib/desktop/pages/desktop_setting_page.dart
+          sed -i -e 's|if (!bind.isDisableAccount()) SettingsTabKey.account|//&|' ./flutter/lib/desktop/pages/desktop_setting_page.dart
+          #./flutter/lib/desktop/pages/connection_page.dart
+          sed -i -e 's|Divider().paddingOnly(right: 12),|//&|' ./flutter/lib/desktop/pages/connection_page.dart
+          sed -i -e 's|Expanded(child: PeerTabPage()),|//&|' ./flutter/lib/desktop/pages/connection_page.dart
+          #./flutter/lib/desktop/pages/desktop_home_page.dart
+          sed -i -e 's|Widget buildPopupMenu(BuildContext context) {|& return Container();|' ./flutter/lib/desktop/pages/desktop_home_page.dart
+          
       # - name: run as admin
       #   continue-on-error: true
       #   if: ${{ env.runasadmin == 'true' }}
