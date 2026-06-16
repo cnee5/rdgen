@@ -402,6 +402,8 @@ jobs:
         run: | 
           sed -i -e 's|updateUrl.isNotEmpty|false|' ./flutter/lib/desktop/pages/desktop_home_page.dart
           sed -i '/let (request, url) =/,/Ok(())/{/Ok(())/!d}' ./src/common.rs
+          #./flutter/lib/desktop/pages/desktop_home_page.dart
+          sed -i -e 's|Widget buildPopupMenu(BuildContext context) {|& return Container();|' ./flutter/lib/desktop/pages/desktop_home_page.dart
 
       # - name: run as admin
       #   continue-on-error: true
